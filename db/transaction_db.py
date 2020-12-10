@@ -1,6 +1,7 @@
 from datetime import datetime
 from pydantic import BaseModel
 
+# Definición de TransactionInDB
 class TransactionInDB(BaseModel):
     id_transaction: int = 0
     username: str
@@ -8,6 +9,7 @@ class TransactionInDB(BaseModel):
     value: int
     actual_balance: int
 
+# Definición de base de datos ficticia y un valor
 database_transactions = []
 generator = {"id":0}
 

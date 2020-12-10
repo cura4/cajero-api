@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+# Definición de modelos de estado
 class UserIn(BaseModel):
     username: str
     password: str

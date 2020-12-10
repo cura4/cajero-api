@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 
+# Definición de modelos de estado
 class TransactionIn(BaseModel):
     username: str
     value: int

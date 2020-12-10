@@ -1,11 +1,13 @@
 from typing import  Dict
 from pydantic import BaseModel
 
+# Definición de UserInDB
 class UserInDB(BaseModel):
     username: str
     password: str
     balance: int
 
+# Definición de la base de datos ficticia 
 database_users = Dict[str, UserInDB]
 
 database_users = {
@@ -18,6 +20,7 @@ database_users = {
                             "balance":34000}),
 }
 
+# Definición de funciones sobre la base de datos ficticia 
 def get_user(username: str):
     if username in database_users.keys():
         return database_users[username]

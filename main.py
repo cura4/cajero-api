@@ -1,14 +1,28 @@
+# Se importan los modelos creados en los acrhivos de carpetas db y models
 from db.user_db import UserInDB
 from db.user_db import update_user, get_user
 from db.transaction_db import TransactionInDB
 from db.transaction_db import save_transaction
 from models.user_models import UserIn, UserOut
 from models.transaction_models import TransactionIn, TransactionOut
+# Se importan algunos paquetes adicionales y se crea la api
 import datetime
 from fastapi import FastAPI, HTTPException
 
 api = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+origins = [
+    "http://localhost.tiangolo.com", "https://localhost.tiangolo.com",
+    "http://localhost", "http://localhost:8080",
+]
+api.add_middleware(
+    CORSMiddleware, allow_origins=origins,
+    allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
+)
+
+
+# Se implementa la funcionalidad auth_user
 @api.post("/user/auth/")
 async def auth_user(user_in: UserIn):
 
@@ -22,7 +36,7 @@ async def auth_user(user_in: UserIn):
 
     return  {"Autenticado": True}
 
-
+# Se implementa la funcionalidad get_balance
 @api.get("/user/balance/{username}")
 async def get_balance(username: str):
 
@@ -35,7 +49,7 @@ async def get_balance(username: str):
 
     return  user_out
 
-
+# Se implementa la funcionalidad make_transaction
 @api.put("/user/transaction/")
 async def make_transaction(transaction_in: TransactionIn):
 
